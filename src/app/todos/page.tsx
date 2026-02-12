@@ -1,17 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import AddTask from "@/components/AddTask";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { Trash2, Edit2 } from "lucide-react";
 
-type Todos = {
-  _id: string;
-  title: string;
-  description?: string;
-  completed?: boolean;
-};
+// type Todos = {
+//   _id: string;
+//   title: string;
+//   description?: string;
+//   completed?: boolean;
+// };
 
 export default function ToDoList() {
   const [taskList, setTaskList] = useState<Todos[]>([]);
@@ -19,6 +19,7 @@ export default function ToDoList() {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editTitle, setEditTitle] = useState("");
   const [editDescription, setEditDescription] = useState("");
@@ -110,6 +111,7 @@ async function handleDelete(id: string) {
   }
 
   return (
+    <Suspense fallback={<h1>Loading ...</h1>}>
     <Container>
       <div className="flex gap-6 mt-5">
         {/* Task list */}
@@ -152,5 +154,6 @@ async function handleDelete(id: string) {
         />
       </div>
     </Container>
+    </Suspense>
   );
 }

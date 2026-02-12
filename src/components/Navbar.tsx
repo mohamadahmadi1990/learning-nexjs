@@ -26,8 +26,8 @@ function Navbar() {
             title : "todos"
         },
         {
-            href : "/learning",
-            title : "learning"
+            href : "/ticket",
+            title : "ticket"
         }
     ]
   return (
