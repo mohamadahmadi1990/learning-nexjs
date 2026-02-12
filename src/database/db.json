@@ -215,22 +215,6 @@
         "rate": 4.7,
         "count": 130
       }
-    },
-    {
-      "id": "19",
-      "title": "Updated New",
-      "price": 200,
-      "description": "Updated description",
-      "category": "electronics",
-      "image": "..."
-    },
-    {
-      "id": "20",
-      "title": "Updated New",
-      "price": 200,
-      "description": "Updated description",
-      "category": "electronics",
-      "image": "..."
     }
   ],
   "discounts": [

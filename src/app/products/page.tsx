@@ -1,42 +1,25 @@
-import CategoryMenu from "@/components/CategoryMenu"
-import Container from "@/components/Container"
-import ProductItem from "@/components/ProductItem"
-import Link from "next/link"
+import Container from "@/components/Container";
+import ProductItem from "@/components/ProductItem";
+import Link from "next/link";
+import { dbConnect } from "@/lib/dbConnectCompass"; // Import your DB logic
+import Product from "@/models/Product";     // Import your Model
+import CategoryMenu from "@/components/CategoryMenu";
 
+export default async function ProductsPage() {
+  // 1. Connect and Fetch directly (No fetch() needed!)
+  await dbConnect();
+  const products = await Product.find({}).lean(); // .lean() makes it a plain JS object
 
-export interface IProduct {
-  id: number
-  title: string
-  price: number
-  description: string
-  category: string
-  image: string
-}
-
-export default async function CategoriesPage() {
-
-  const res = await fetch("http://localhost:8000/products", {
-    cache: "no-store",
-  })
-
-  const products: IProduct[] = await res.json()
- 
   return (
     <Container>
-    <div>
-      <h1 className="font-black italic mb-5">Categories</h1>
       <CategoryMenu />
       <div className="grid grid-cols-4 gap-3 mt-5">
-      {
-        products.map((item)=>(
-          <Link key={item.id} href={`/products/${encodeURIComponent(item.category)}/${item.id}`}>
-            <ProductItem {...item}  />
+        {products.map((item: IProduct) => (
+          <Link key={item._id.toString()} href={`/products/${encodeURIComponent(item.category)}/${item._id}`}>
+            <ProductItem {...item} />
           </Link>
-        ))
-      }
+        ))}
       </div>
-    </div>
-
     </Container>
-  )
+  );
 }

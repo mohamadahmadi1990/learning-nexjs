@@ -1,4 +1,3 @@
-import { IProduct } from "@/app/products/page";
 import AddToCart from "./AddToCart";
 import Image from "next/image";
 

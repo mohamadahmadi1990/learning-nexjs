@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI!;
-if (!MONGODB_URI) throw new Error("Please define MONGODB_URI in .env.local");
+const MONGO_COMPASS = process.env.MONGO_COMPASS!;
+if (!MONGO_COMPASS) throw new Error("Please define MONGO_COMPASS in .env.local");
 
 interface MongooseCache {
   conn: typeof mongoose | null;
@@ -17,7 +17,7 @@ export async function dbConnect() {
   if (cached.conn) return cached.conn;
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => mongoose);
+    cached.promise = mongoose.connect(MONGO_COMPASS).then((mongoose) => mongoose);
   }
 
   cached.conn = await cached.promise;
