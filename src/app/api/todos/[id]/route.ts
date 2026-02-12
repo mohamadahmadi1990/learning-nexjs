@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import {dbConnect} from "@/lib/mongoose";
+import {dbConnect} from "@/lib/dbConnectCompass";
 import Todo from "@/models/Todo";
 
 export async function DELETE(req: Request, context: { params: Promise<{ id: string }> }) {

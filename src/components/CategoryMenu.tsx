@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { dbConnect } from "@/lib/mongoose";
+import { dbConnect } from "@/lib/dbConnectCompass";
 import Product from "@/models/Product";
 
 export default async function CategoryMenu() {

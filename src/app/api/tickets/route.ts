@@ -1,4 +1,4 @@
-import { dbConnect } from "@/lib/dbConnect";
+import { dbConnect } from "@/lib/dbConnectAtlas";
 import Ticket from "@/models/Ticket";
 import { NextResponse } from "next/server";
 

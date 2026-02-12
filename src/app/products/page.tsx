@@ -1,7 +1,7 @@
 import Container from "@/components/Container";
 import ProductItem from "@/components/ProductItem";
 import Link from "next/link";
-import { dbConnect } from "@/lib/mongoose"; // Import your DB logic
+import { dbConnect } from "@/lib/dbConnectCompass"; // Import your DB logic
 import Product from "@/models/Product";     // Import your Model
 import CategoryMenu from "@/components/CategoryMenu";
 

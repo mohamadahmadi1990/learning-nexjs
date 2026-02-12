@@ -1,6 +1,6 @@
 import Container from "@/components/Container";
 import SingleProduct from "@/components/SingleProduct";
-import { dbConnect } from "@/lib/mongoose";
+import { dbConnect } from "@/lib/dbConnectCompass";
 import Product from "@/models/Product";
 import { notFound } from "next/navigation";
 

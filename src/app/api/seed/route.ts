@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import {dbConnect} from "@/lib/mongoose";
+import {dbConnect} from "@/lib/dbConnectCompass";
 import Product from "@/models/Product";
 import data from "@/database/products.json"; // move your JSON into /data folder
 

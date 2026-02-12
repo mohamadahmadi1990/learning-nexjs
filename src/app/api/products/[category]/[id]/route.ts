@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { dbConnect } from "@/lib/mongoose";
+import { dbConnect } from "@/lib/dbConnectCompass";
 import Product from "@/models/Product";
 import mongoose from "mongoose";
 

@@ -2,8 +2,9 @@ import Link from "next/link";
 import Container from "@/components/Container";
 import ProductItem from "@/components/ProductItem";
 import CategoryMenu from "@/components/CategoryMenu";
-import { dbConnect } from "@/lib/mongoose";
+import { dbConnect } from "@/lib/dbConnectCompass";
 import Product from "@/models/Product";
+import { Button } from "@/components/ui/button";
 
 interface IProps {
   // On this specific route, we only care about the category param
@@ -28,8 +29,9 @@ export default async function CategoryPage({ params }: IProps) {
     // You can either show a "No products found" message or use notFound()
     return (
       <Container>
-        <div className="mt-10 text-center text-gray-500">
-          No products found in the `{decodedCategory}` category.
+        <div className=" flex flex-col gap-5 mt-10 text-center text-gray-500">
+          No products found in the {decodedCategory} category.
+          <Link href={"/products"}><Button variant="outline">Back to Product</Button></Link>
         </div>
       </Container>
     );
@@ -37,7 +39,6 @@ export default async function CategoryPage({ params }: IProps) {
 
   return (
     <Container>
-      {/* <h1 className="mt-6 text-2xl font-bold capitalize">{decodedCategory}</h1> */}
       <CategoryMenu />
       <div className="grid grid-cols-4 gap-3 mt-5">
         {products.map((item: IProduct) => (
