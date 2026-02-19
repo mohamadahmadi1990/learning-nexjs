@@ -9,7 +9,7 @@ interface IProps {
   params: Promise<{ category: string; id: string }>;
 }
 
-async function ProductPage({ params }: IProps) {
+async function ProductPage({ params}: IProps) {
   
   const { id } = await params;
 

@@ -4,14 +4,20 @@ import Link from "next/link";
 import { dbConnect } from "@/lib/dbConnectCompass"; // Import your DB logic
 import Product from "@/models/Product";     // Import your Model
 import CategoryMenu from "@/components/CategoryMenu";
+import { Suspense } from "react";
+import { Loading } from "@/components/Loading";
+
+
 
 export default async function ProductsPage() {
   // 1. Connect and Fetch directly (No fetch() needed!)
   await dbConnect();
   const products = await Product.find({}).lean(); // .lean() makes it a plain JS object
 
+
   return (
     <Container>
+      <Suspense fallback={<Loading />}>
       <CategoryMenu />
       <div className="grid grid-cols-4 gap-3 mt-5">
         {products.map((item: IProduct) => (
@@ -20,6 +26,7 @@ export default async function ProductsPage() {
           </Link>
         ))}
       </div>
+      </Suspense>
     </Container>
   );
 }

@@ -1,4 +1,4 @@
-import TicketForm from '@/components/TicketForm'
+import TicketForm from "@/components/TicketForm"
 
 function page() {
   return (

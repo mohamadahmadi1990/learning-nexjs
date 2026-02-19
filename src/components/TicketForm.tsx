@@ -14,6 +14,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import type { ChangeEvent, FormEvent } from "react";
+
 
 function TicketForm() {
   const router = useRouter();
@@ -28,9 +30,10 @@ function TicketForm() {
     active: true,
   };
 
-  const [formData, setFormData] = useState(startingTicketData);
+  const [formData, setFormData] = useState<Ticket>(startingTicketData);
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement >) => {
+
     const { name, value, type } = e.target;
 
     setFormData((prev) => ({
@@ -39,7 +42,8 @@ function TicketForm() {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    
     e.preventDefault();
 
     const res = await fetch("/api/tickets", {

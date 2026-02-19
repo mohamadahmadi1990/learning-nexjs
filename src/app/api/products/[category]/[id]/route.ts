@@ -3,14 +3,16 @@ import { dbConnect } from "@/lib/dbConnectCompass";
 import Product from "@/models/Product";
 import mongoose from "mongoose";
 
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+interface IProps {
+  params: Promise<{ category: string; id: string }>;
+}
+
+export async function GET(request: Request, { params }: IProps) {
+
   try {
     await dbConnect();
 
-    const { id } = params;
+    const { id } = await params;
 
     // Validate ObjectId
     if (!mongoose.Types.ObjectId.isValid(id)) {

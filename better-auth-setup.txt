@@ -1,0 +1,41 @@
+• Install Dependencies >> npm install better-auth mongodb
+• Configure the MongoDB Client >> lib/mongodb-client.ts >>
+import { MongoClient } from "mongodb";
+
+const uri = process.env.MONGODB_URI!;
+const client = new MongoClient(uri);
+const clientPromise = client.connect();
+
+export default clientPromise;
+
+// Optional: Export a dedicated db promise for cleaner imports elsewhere
+export const dbPromise = clientPromise.then(client => client.db());
+
+• Initialize Better Auth (Server-side) >> lib/auth.ts >>
+import { betterAuth } from "better-auth";
+import { mongodbAdapter } from "better-auth/adapters/mongodb";
+import { dbPromise } from "./mongodb-client";
+
+export const auth = betterAuth({
+    database: mongodbAdapter(await dbPromise),
+    // ... rest of config
+
+    emailAndPassword: {
+        enabled: true,
+    },
+});
+
+• Create the API Route >> app/api/auth/[...all]/route.ts >>
+import { auth } from "@/lib/auth";
+import { toNextJsHandler } from "better-auth/next-js";
+
+export const { GET, POST } = toNextJsHandler(auth);
+
+• Create the Auth Client (Client-side) >> lib/auth-client.ts >>
+import { createAuthClient } from "better-auth/react";
+
+export const authClient = createAuthClient({
+    baseURL: process.env.NEXT_PUBLIC_APP_URL // e.g., http://localhost:3000
+});
+
+• Build the Signup & Login UI >>

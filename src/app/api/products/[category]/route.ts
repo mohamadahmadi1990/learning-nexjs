@@ -3,10 +3,9 @@ import { dbConnect } from "@/lib/dbConnectCompass";
 import Product from "@/models/Product";
 import mongoose from "mongoose";
 
-export async function GET(
-  request: Request,
-  { params }: { params: { category : string } }
-) {
+
+export async function GET(request: Request, { params }: { params: { category : string, id: string } }) {
+
   try {
     await dbConnect();
 

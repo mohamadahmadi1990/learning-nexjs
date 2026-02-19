@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import MainLayout from "@/components/MainLayout";
 import { ShoppingCartContextProvider } from "@/context/ShoppingCartContext";
+import ToastProvider from "@/components/ToastProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,7 +14,10 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
     <html lang="en" suppressHydrationWarning>
       <body>
         <ShoppingCartContextProvider>
-          <MainLayout>{children}</MainLayout>
+          <MainLayout>
+            {children}
+             <ToastProvider />
+            </MainLayout>
         </ShoppingCartContextProvider>
       </body>
     </html>
